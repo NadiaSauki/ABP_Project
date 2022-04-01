@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background: rgb(238, 189, 238);
+}
+.row {
+    background: white;
+    border-radius: 3px;
+    box-shadow: 12px 12px 22px grey;
+}
+.btn2 {
+    border: none;
+    outline: none;
+    height: 50px;
+    width: 100%;
+    background-color: black;
+    color: white;
+    border-radius: 4px;
+    font-weight: bold;
+}
+.btn2:hover {
+    background: white;
+    border: 1px solid;
+    color: black;
+}
