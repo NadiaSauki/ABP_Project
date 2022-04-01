@@ -15,7 +15,7 @@
         <ul>
             <li><a href="#home">Home</a></li>
             <li><a href="#genre">Browse</a></li>
-            <li style="float:right"><a href="#profile">Login</a></li>
+            <li style="float:right"><a href="/login.php">Login</a></li>
             <li style="float:right"><a href="#cart">Language</a></li>
         </ul>
 
