@@ -42,7 +42,7 @@
                     <svg class="bd-placeholder-img" width="100%" height="100%"><rect width="100%" height="100%" fill="#d5a6bd"/></svg>
                     <div class="container">
                         <div class="carousel-caption">
-                            <h1>Another example headline.</h1>
+                            <h1>Another EXAMPLE headline.</h1>
                             <p>Some representative placeholder content for the second slide of the carousel.</p>
                             <p><img src="images/3.jpg" class="img-fluid" alt=""></p>
                             <p><a class="btn btn-lg btn-primary" href="#">Read</a></p>
