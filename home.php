@@ -15,7 +15,7 @@
         <ul> <!--header-->
             <li><a href="#home">Home</a></li>
             <li><a href="#genre">Browse</a></li>
-            <li style="float:right"><a href="/login.php">Login</a></li>
+            <li style="float:right"><a href="http://localhost/ABP_Project/login.php">Login</a></li>
         </ul>
 
         <!--slideshow-->

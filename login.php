@@ -39,7 +39,7 @@
                                 </div>
                             </div>
                             <a href="#">Forgot Password</a>
-                            <p>Dont't have an account? <a href="/register.php">Register here</a></p><br>
+                            <p>Dont't have an account? <a href="http://localhost/ABP_Project/register.php">Register here</a></p><br>
                         </form>
 
                     </div>
