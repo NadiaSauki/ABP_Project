@@ -3,7 +3,6 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: black;
 }
 li {
     float: left;
@@ -17,7 +16,7 @@ li a {
 }
 li a:hover:not(.active) {
     background-color: #cc0000;
-    color: black;
+    color: white;
 
 }
 .carousel {
