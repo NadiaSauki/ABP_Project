@@ -21,10 +21,10 @@
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li><a href="#">Home</a></li>
-                    <li><a href="#">Features</a></li>
-                    <li><a href="#">Pricing</a></li>
-                    <li><a href="#">FAQs</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="#">Browsing</a></li>
+                    <li><a href="#">Library</a></li>
+                    <li><a href="#">Genre</a></li>
+                    <li><a href="#">Notification</a></li>
                     </ul>
 
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
