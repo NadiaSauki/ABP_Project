@@ -20,11 +20,12 @@
                     </a>
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Browsing</a></li>
-                    <li><a href="#">Library</a></li>
-                    <li><a href="#">Genre</a></li>
-                    <li><a href="#">Notification</a></li>
+                        <li><a href="http://localhost/ABP_Project/home.php">Home</a></li>
+                        <li><a href="http://localhost/ABP_Project/manage_browsing/browse.php">Browsing</a></li>
+                        <li><a href="http://localhost/ABP_Project/manage_library/library.php">Library</a></li>
+                        <li><a href="http://localhost/ABP_Project/manage_genre/genre.php">Genre</a></li>
+                        <li><a href="http://localhost/ABP_Project/manage_notification/message.php">Notification</a></li>
+                        <li><a href="http://localhost/ABP_Project/manage_payment/payment.php">Premium</a></li>
                     </ul>
                     
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
@@ -71,16 +72,16 @@
                     </div>
                 </div>
             </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
 
-        <!---->
     </body>
 </html>
