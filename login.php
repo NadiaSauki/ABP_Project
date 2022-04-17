@@ -5,34 +5,34 @@ session_start();
 
 if(isset($_POST['submit'])){
 
-   $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
 
-   $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email' AND password = '$pass'") or die('query failed');
+    $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE email = '$email' AND password = '$pass'") or die('query failed');
 
-   if(mysqli_num_rows($select_users) > 0){
+    if(mysqli_num_rows($select_users) > 0){
 
-      $row = mysqli_fetch_assoc($select_users);
+        $row = mysqli_fetch_assoc($select_users);
 
-      if($row['user_type'] == 'admin'){
+        if($row['user_type'] == 'admin'){
 
-         $_SESSION['admin_name'] = $row['name'];
-         $_SESSION['admin_email'] = $row['email'];
-         $_SESSION['admin_id'] = $row['id'];
-         header('location:admin_page.php');
+            $_SESSION['admin_name'] = $row['name'];
+            $_SESSION['admin_email'] = $row['email'];
+            $_SESSION['admin_id'] = $row['id'];
+            header('location:http://localhost/ABP_Project/manage_profile/admin_page.php');
 
-      }elseif($row['user_type'] == 'user'){
+        }elseif($row['user_type'] == 'user'){
 
-         $_SESSION['user_name'] = $row['name'];
-         $_SESSION['user_email'] = $row['email'];
-         $_SESSION['user_id'] = $row['id'];
-         header('location:home.php');
+            $_SESSION['user_name'] = $row['name'];
+            $_SESSION['user_email'] = $row['email'];
+            $_SESSION['user_id'] = $row['id'];
+            header('location:http://localhost/ABP_Project/home.php');
 
-      }
+        }
 
-   }else{
-      $message[] = 'incorrect email or password!';
-   }
+    }else{
+        $message[] = 'incorrect email or password!';
+    }
 
 }
 
@@ -76,21 +76,15 @@ if(isset($_POST['submit'])){
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                         <li><a href="http://localhost/ABP_Project/home.php">Home</a></li>
-                        <li><a href="http://localhost/ABP_Project/manage_browsing/browse.php">Browsing</a></li>
-                        <li><a href="http://localhost/ABP_Project/manage_library/library.php">Library</a></li>
-                        <li><a href="http://localhost/ABP_Project/manage_genre/genre.php">Genre</a></li>
-                        <li><a href="http://localhost/ABP_Project/manage_notification/message.php">Notification</a></li>
-                        <li><a href="http://localhost/ABP_Project/manage_payment/payment.php">Premium</a></li>
+                        <li><a onclick="alert('Please log in your account to continue the activity')">Product</a></li>
+                        <li><a onclick="alert('Please log in your account to continue the activity')">Order</a></li>
+                        <li><a onclick="alert('Please log in your account to continue the activity')">Cart</a></li>
                     </ul>
                     
                     <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                     <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
                     </form>
 
-                    <div class="text-end">
-                    <a href="http://localhost/ABP_Project/login.php" class="btn btn-outline-light me-2" role="button">Login</a>
-                    <a href="http://localhost/ABP_Project/register.php" class="btn btn-warning" role="button">Register</a>
-                    </div>
                 </div>
             </div>
         </header>
@@ -104,8 +98,7 @@ if(isset($_POST['submit'])){
                     </div>
                     <div class="col-lg-7 px-5 pt-5">
                         
-                        <h2 class="font-weight-bold py-3">Logo</h2>
-                        <h4>Sign into your account</h4>
+                        <h3>Sign into your account</h3><br>
                         
                         <form>
                             <div class="form-row">
