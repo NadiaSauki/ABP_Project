@@ -113,7 +113,7 @@ if(isset($_POST['submit'])){
                             </div>
                             <div class="form-row">
                                 <div class="col-lg-7">
-                                    <button type="button" class="btn1 mt-3 mb-5">Login</button>
+                                    <button type="button" class="btn1 mt-3 mb-5">LOGIN</button>
                                 </div>
                             </div>
                             <a href="#">Forgot Password</a>
