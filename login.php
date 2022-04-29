@@ -3,7 +3,7 @@
 include 'config.php';
 session_start();
 
-if(isset($_POST['submit'])){
+if(isset($_POST['login'])){
 
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $pass = mysqli_real_escape_string($conn, md5($_POST['password']));
@@ -70,21 +70,20 @@ if(isset($_POST['submit'])){
         <header class="p-3 bg-dark text-white">
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none">
-                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap"><use xlink:href="#bootstrap"/></svg>
+                    <a href="http://localhost/ABP_Project/index.php" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"><h3>bookly.</h3>
+                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">></svg>
                     </a>
 
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href="http://localhost/ABP_Project/home.php">Home</a></li>
+                        <li><a onclick="alert('Please log in your account to continue the activity')">About</a></li>
                         <li><a onclick="alert('Please log in your account to continue the activity')">Product</a></li>
-                        <li><a onclick="alert('Please log in your account to continue the activity')">Order</a></li>
-                        <li><a onclick="alert('Please log in your account to continue the activity')">Cart</a></li>
+                        <li><a onclick="alert('Please log in your account to continue the activity')">Orders</a></li>
                     </ul>
-                    
-                    <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
-                    <input type="search" class="form-control form-control-dark" placeholder="Search..." aria-label="Search">
-                    </form>
 
+                    <div class="text-end">
+                        <a href="http://localhost/ABP_Project/login.php" class="btn btn-outline-light me-2" role="button">Login</a>
+                        <a href="http://localhost/ABP_Project/register.php" class="btn btn-warning" role="button">Register</a>
+                    </div>
                 </div>
             </div>
         </header>
@@ -100,23 +99,22 @@ if(isset($_POST['submit'])){
                         
                         <h3>Sign into your account</h3><br>
                         
-                        <form>
+                        <form method="POST">
                             <div class="form-row">
                                 <div class="col-lg-7">
-                                    <input type="email" placeholder="Email Address" class="form-control my-3 p-4">
+                                    <input type="email" placeholder="Email Address" class="form-control my-3 p-4" name="email" id="email">
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-lg-7">
-                                    <input type="password" placeholder="********" class="form-control my-3 p-4">
+                                    <input type="password" placeholder="********" class="form-control my-3 p-4" name="password" id="pass" >
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-lg-7">
-                                    <button type="button" class="btn1 mt-3 mb-5">Login</button>
+                                    <button type="button" class="btn1 mt-3 mb-5" name="login">Login</button>
                                 </div>
                             </div>
-                            <a href="#">Forgot Password</a>
                             <p>Dont't have an account? <a href="http://localhost/ABP_Project/register.php">Register here</a></p><br>
                         </form>
 
