@@ -37,7 +37,14 @@
             </div>
         </header>
 
-        //
+        <div class ="py-4 text-center container">
+            <div class ="row py-lg-4">
+                <h1 class="fw-bold mb-0" style="color: purple;">Search Page</h1>
+                <p><h4 class="fw-light mb-0" style="color: black;"><a href="http://localhost/ABP_Project/home.php">Home</a> /Search</h4></p>
+            </div>
+
+            <div class="modal-content rounded-5 shadow"></div>
+        </div>
 
         <div class="p-3 bg-dark text-white">
             <div class="container">

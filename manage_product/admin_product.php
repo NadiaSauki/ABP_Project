@@ -30,7 +30,7 @@ if(isset($_POST['add_product'])){
          }else{
             move_uploaded_file($image_tmp_name, $image_folder);
             $message[] = 'product added successfully!';
-         }
+         } //LINE 31 NEED TO ADJUST, WHY CAN'T UPLOAD IMAGE
       }else{
          $message[] = 'product could not be added!';
       }

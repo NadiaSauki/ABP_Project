@@ -1,3 +1,30 @@
+<?php
+
+$conn = mysqli_connect("localhost:3306","root","","shop_db");
+if(!$conn)
+{
+	echo "Database connection faild...";
+}
+
+session_start();
+
+if(isset($_POST['add_to_cart'])){
+    $product_name = $_POST['product_name'];
+    $product_price = $_POST['product_price'];
+    $product_image = $_POST['product_image'];
+    $product_quantity = $_POST['product_quantity'];
+
+    $check_cart_numbers = mysqli_query($conn, "SELECT * FROM `cart` WHERE name = '$product_name'");
+
+    if(mysqli_num_rows ($check_cart_numbers) > 0){
+        $message[] = 'Already added to cart!';
+    } else {
+        mysqli_query($conn, "INSERT INTO `cart   (name, price, quantity, image) VALUES ('$product_name', '$product_price', '$product_quantity', '$product_image')") or die('query failed');
+        $message[] = 'Product added to cart!';
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,7 +35,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://kit.fontawesome.com/93a36b9820.js" crossorigin="anonymous"></script>
                 
-        <link rel="stylesheet" type="text/css" href="http://localhost/ABP_Project/css/home.css">
+        <link rel="stylesheet" type="text/css" href="http://localhost/ABP_Project/css/style.css">
     </head>
 
     <body>
@@ -37,7 +64,40 @@
             </div>
         </header>
 
-        //
+        <section class="products">
+        <div class ="py-4 text-center container">
+        <div class ="row py-lg-4">
+                    <h1 class="fw-bold mb-0" style="color: purple;">Latest Product</h1>
+                    <p><h4 class="fw-light mb-0" style="color: black;"><a href="http://localhost/ABP_Project/home.php">Home</a> /Shop</h4></p>
+                </div></div>
+
+   <div class="box-container">
+
+      <?php  
+         $select_products = mysqli_query($conn, "SELECT * FROM `products`") or die('query failed');
+         if(mysqli_num_rows($select_products) > 0){
+            while($fetch_products = mysqli_fetch_assoc($select_products)){
+      ?>
+     <form action="" method="post" class="box">
+      <img class="image" src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
+      <div class="name"><?php echo $fetch_products['name']; ?></div>
+      <div class="price">$<?php echo $fetch_products['price']; ?>/-</div>
+      <input type="number" min="1" name="product_quantity" value="1" class="qty">
+      <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
+      <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
+      <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
+      <input type="submit" value="add to cart" name="add_to_cart" class="btn">
+     </form>
+      <?php
+         }
+      }else{
+         echo '<p class="empty">no products added yet!</p>';
+      }
+      ?>
+   </div>
+
+</section>
+
 
         <div class="p-3 bg-dark text-white">
             <div class="container">

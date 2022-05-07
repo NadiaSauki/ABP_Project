@@ -8,7 +8,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://kit.fontawesome.com/93a36b9820.js" crossorigin="anonymous"></script>
                 
-        <link rel="stylesheet" type="text/css" href="http://localhost/ABP_Project/css/home.css">
+        <link rel="stylesheet" type="text/css" href="http://localhost/ABP_Project/css/style.css">
     </head>
 
     <body>
