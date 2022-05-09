@@ -64,40 +64,40 @@ if(isset($_POST['add_to_cart'])){
             </div>
         </header>
 
-        <section class="products">
-        <div class ="py-4 text-center container">
-        <div class ="row py-lg-4">
+        <div class="modal-content rounded-5 shadow">
+            <div class ="row py-lg-4">
+                <div class ="py-4 text-center container">
                     <h1 class="fw-bold mb-0" style="color: purple;">Latest Product</h1>
                     <p><h4 class="fw-light mb-0" style="color: black;"><a href="http://localhost/ABP_Project/home.php">Home</a> /Shop</h4></p>
-                </div></div>
-
-   <div class="box-container">
-
-      <?php  
-         $select_products = mysqli_query($conn, "SELECT * FROM `products`") or die('query failed');
-         if(mysqli_num_rows($select_products) > 0){
-            while($fetch_products = mysqli_fetch_assoc($select_products)){
-      ?>
-     <form action="" method="post" class="box">
-      <img class="image" src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
-      <div class="name"><?php echo $fetch_products['name']; ?></div>
-      <div class="price">$<?php echo $fetch_products['price']; ?>/-</div>
-      <input type="number" min="1" name="product_quantity" value="1" class="qty">
-      <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
-      <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
-      <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
-      <input type="submit" value="add to cart" name="add_to_cart" class="btn">
-     </form>
-      <?php
-         }
-      }else{
-         echo '<p class="empty">no products added yet!</p>';
-      }
-      ?>
-   </div>
-
-</section>
-
+                </div>
+                
+                <div class="products">
+                    <div class="box-container">
+                        <?php  
+                        $select_products = mysqli_query($conn, "SELECT * FROM `products`") or die('query failed');
+                        if(mysqli_num_rows($select_products) > 0){
+                            while($fetch_products = mysqli_fetch_assoc($select_products)){
+                        ?>
+                        <form action="" method="post" class="box">
+                        <img class="image" src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
+                        <div class="name"><?php echo $fetch_products['name']; ?></div>
+                        <div class="price">$<?php echo $fetch_products['price']; ?>/-</div>
+                        <input type="number" min="1" name="product_quantity" value="1" class="qty">
+                        <input type="hidden" name="product_name" value="<?php echo $fetch_products['name']; ?>">
+                        <input type="hidden" name="product_price" value="<?php echo $fetch_products['price']; ?>">
+                        <input type="hidden" name="product_image" value="<?php echo $fetch_products['image']; ?>">
+                        <input type="submit" value="add to cart" name="add_to_cart" class="btn">
+                        </form>
+                        <?php
+                        }
+                        }else{
+                        echo '<p class="empty">no products added yet!</p>';
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>        
 
         <div class="p-3 bg-dark text-white">
             <div class="container">

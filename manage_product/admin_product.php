@@ -152,61 +152,64 @@ if(isset($_POST['update_product'])){
             </div>
         </div>
 
-        <section class="show-products">
-
-   <div class="box-container">
-
-      <?php
-         $select_products = mysqli_query($conn, "SELECT * FROM `products`") or die('query failed');
-         if(mysqli_num_rows($select_products) > 0){
-            while($fetch_products = mysqli_fetch_assoc($select_products)){
-      ?>
-      <div class="box">
-         <img src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
-         <div class="name"><?php echo $fetch_products['name']; ?></div>
-         <div class="price">$<?php echo $fetch_products['price']; ?>/-</div>
-         <a href="admin_products.php?update=<?php echo $fetch_products['id']; ?>" class="option-btn">update</a>
-         <a href="admin_products.php?delete=<?php echo $fetch_products['id']; ?>" class="delete-btn" onclick="return confirm('delete this product?');">delete</a>
-      </div>
-      <?php
-         }
-      }else{
-         echo '<p class="empty">no products added yet!</p>';
-      }
-      ?>
-   </div>
-
-</section>
-
-<section class="edit-product-form">
-
-   <?php
-      if(isset($_GET['update'])){
-         $update_id = $_GET['update'];
-         $update_query = mysqli_query($conn, "SELECT * FROM `products` WHERE id = '$update_id'") or die('query failed');
-         if(mysqli_num_rows($update_query) > 0){
-            while($fetch_update = mysqli_fetch_assoc($update_query)){
-   ?>
-   <form action="" method="post" enctype="multipart/form-data">
-      <input type="hidden" name="update_p_id" value="<?php echo $fetch_update['id']; ?>">
-      <input type="hidden" name="update_old_image" value="<?php echo $fetch_update['image']; ?>">
-      <img src="uploaded_img/<?php echo $fetch_update['image']; ?>" alt="">
-      <input type="text" name="update_name" value="<?php echo $fetch_update['name']; ?>" class="box" required placeholder="enter product name">
-      <input type="number" name="update_price" value="<?php echo $fetch_update['price']; ?>" min="0" class="box" required placeholder="enter product price">
-      <input type="file" class="box" name="update_image" accept="image/jpg, image/jpeg, image/png">
-      <input type="submit" value="update" name="update_product" class="btn">
-      <input type="reset" value="cancel" id="close-update" class="option-btn">
-   </form>
-   <?php
-         }
-      }
-      }else{
-         echo '<script>document.querySelector(".edit-product-form").style.display = "none";</script>';
-      }
-   ?>
-
-</section>
-
+        <div class="modal-content rounded-5 shadow">
+            <div class="show-products">
+                <div class="row py-lg-4">
+                    <div class="box-container">
+                        <?php
+                            $select_products = mysqli_query($conn, "SELECT * FROM `products`") or die('query failed');
+                            if(mysqli_num_rows($select_products) > 0){
+                                while($fetch_products = mysqli_fetch_assoc($select_products)){
+                        ?>
+                        <div class="box">
+                            <img src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
+                            <div class="name"><?php echo $fetch_products['name']; ?></div>
+                            <div class="price">$<?php echo $fetch_products['price']; ?>/-</div>
+                            <a href="admin_products.php?update=<?php echo $fetch_products['id']; ?>" class="option-btn">update</a>
+                            <a href="admin_products.php?delete=<?php echo $fetch_products['id']; ?>" class="delete-btn" onclick="return confirm('delete this product?');">delete</a>
+                        </div>
+                        <?php
+                            }
+                        }else{
+                            echo '<p class="empty">no products added yet!</p>';
+                        }
+                        ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="modal-content rounded-5 shadow">
+            <div  class="row py-lg-4">
+                <div class="edit-product-form">
+                    <?php
+                        if(isset($_GET['update'])){
+                            $update_id = $_GET['update'];
+                            $update_query = mysqli_query($conn, "SELECT * FROM `products` WHERE id = '$update_id'") or die('query failed');
+                            if(mysqli_num_rows($update_query) > 0){
+                                while($fetch_update = mysqli_fetch_assoc($update_query)){
+                    ?>
+                    <form action="" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="update_p_id" value="<?php echo $fetch_update['id']; ?>">
+                        <input type="hidden" name="update_old_image" value="<?php echo $fetch_update['image']; ?>">
+                        <img src="uploaded_img/<?php echo $fetch_update['image']; ?>" alt="">
+                        <input type="text" name="update_name" value="<?php echo $fetch_update['name']; ?>" class="box" required placeholder="enter product name">
+                        <input type="number" name="update_price" value="<?php echo $fetch_update['price']; ?>" min="0" class="box" required placeholder="enter product price">
+                        <input type="file" class="box" name="update_image" accept="image/jpg, image/jpeg, image/png">
+                        <input type="submit" value="update" name="update_product" class="btn">
+                        <input type="reset" value="cancel" id="close-update" class="option-btn">
+                    </form>
+                    <?php
+                            }
+                        }
+                        }else{
+                            echo '<script>document.querySelector(".edit-product-form").style.display = "none";</script>';
+                        }
+                    ?>
+                </div>
+            </div>
+        </div>
+        
         <div class="p-3 bg-light text-black">
             <div class="container">
                 <footer class="d-flex flex-wrap justify-content-between align-items-center py-2 my-3 border-top">

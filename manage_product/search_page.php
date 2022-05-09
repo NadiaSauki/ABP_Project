@@ -66,53 +66,52 @@ if(isset($_POST['add_to_cart'])){
             </div>
         </header>
 
-        <div class ="py-4 text-center container">
+        <div class="modal-content rounded-5 shadow">
             <div class ="row py-lg-4">
-                <h1 class="fw-bold mb-0" style="color: purple;">Search Page</h1>
-                <p><h4 class="fw-light mb-0" style="color: black;"><a href="http://localhost/ABP_Project/home.php">Home</a> /Search</h4></p>
-            </div>
-
-            <div class="modal-content rounded-5 shadow">
-                <div class="search-form">
-                    <form action="" method="post">
-                        <input type="text" name="search" placeholder="Search Products" class="box">
-                        <input type="submit" name="submit" value="Search" class="btn">
-                    </form>
+                <div class ="py-4 text-center container">
+                    <h1 class="fw-bold mb-0" style="color: purple;">Search Page</h1>
+                    <p><h4 class="fw-light mb-0" style="color: black;"><a href="http://localhost/ABP_Project/home.php">Home</a> /Search</h4></p>
                 </div>
 
-                <div class="products" style="padding-top: 0;">
+                <div class="modal-content rounded-5 shadow">
+                    <div class="search-form">
+                        <form action="" method="post">
+                            <input type="text" name="search" placeholder="Search Products" class="box">
+                            <input type="submit" name="submit" value="Search" class="btn">
+                        </form>
+                    </div>
 
-   <div class="box-container">
-   <?php
-      if(isset($_POST['submit'])){
-         $search_item = $_POST['search'];
-         $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE name LIKE '%{$search_item}%'") or die('query failed');
-         if(mysqli_num_rows($select_products) > 0){
-         while($fetch_product = mysqli_fetch_assoc($select_products)){
-   ?>
-   <form action="" method="post" class="box">
-      <img src="uploaded_img/<?php echo $fetch_product['image']; ?>" alt="" class="image">
-      <div class="name"><?php echo $fetch_product['name']; ?></div>
-      <div class="price">$<?php echo $fetch_product['price']; ?>/-</div>
-      <input type="number"  class="qty" name="product_quantity" min="1" value="1">
-      <input type="hidden" name="product_name" value="<?php echo $fetch_product['name']; ?>">
-      <input type="hidden" name="product_price" value="<?php echo $fetch_product['price']; ?>">
-      <input type="hidden" name="product_image" value="<?php echo $fetch_product['image']; ?>">
-      <input type="submit" class="btn" value="add to cart" name="add_to_cart">
-   </form>
-   <?php
-            }
-         }else{
-            echo '<p class="empty">no result found!</p>';
-         }
-      }else{
-         echo '<p class="empty">search something!</p>';
-      }
-   ?>
-   </div>
-  
-
-    </div>
+                    <div class="products" style="padding-top: 0;">
+                        <div class="box-container">
+                            <?php
+                                if(isset($_POST['submit'])){
+                                    $search_item = $_POST['search'];
+                                    $select_products = mysqli_query($conn, "SELECT * FROM `products` WHERE name LIKE '%{$search_item}%'") or die('query failed');
+                                    if(mysqli_num_rows($select_products) > 0){
+                                    while($fetch_product = mysqli_fetch_assoc($select_products)){
+                            ?>
+                            <form action="" method="post" class="box">
+                                <img src="uploaded_img/<?php echo $fetch_product['image']; ?>" alt="" class="image">
+                                <div class="name"><?php echo $fetch_product['name']; ?></div>
+                                <div class="price">$<?php echo $fetch_product['price']; ?>/-</div>
+                                <input type="number"  class="qty" name="product_quantity" min="1" value="1">
+                                <input type="hidden" name="product_name" value="<?php echo $fetch_product['name']; ?>">
+                                <input type="hidden" name="product_price" value="<?php echo $fetch_product['price']; ?>">
+                                <input type="hidden" name="product_image" value="<?php echo $fetch_product['image']; ?>">
+                                <input type="submit" class="btn" value="add to cart" name="add_to_cart">
+                            </form>
+                            <?php
+                                        }
+                                    }else{
+                                        echo '<p class="empty">no result found!</p>';
+                                    }
+                                }else{
+                                    echo '<p class="empty">search something!</p>';
+                                }
+                            ?>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
