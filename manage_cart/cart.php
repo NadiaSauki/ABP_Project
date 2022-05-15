@@ -62,7 +62,7 @@ if(isset($_GET['delete_all'])){
                         <ul>
                             <li><a href="http://localhost/ABP_Project/manage_product/search_page.php"><i class="fas fa-search"></i> Search</a></li>
                             <li><a href="http://localhost/ABP_Project/manage_profile/user_profile.php"><i class="fa fa-user"></i> Profile</a></li>
-                            <li><a href="http://localhost/ABP_Project/manage_cart/add_to_cart.php"><i class="fas fa-shopping-cart"></i> Cart</a></li>
+                            <li><a href="http://localhost/ABP_Project/manage_cart/cart.php"><i class="fas fa-shopping-cart"></i> Cart</a></li>
                             <li><a href="http://localhost/ABP_Project/logout.php">Sign out</a></li>
                         </ul>    
                     </div>
