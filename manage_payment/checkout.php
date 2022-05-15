@@ -1,6 +1,10 @@
 <?php
 
-include 'config.php';
+$conn = mysqli_connect("localhost:3306","root","","shop_db");
+if(!$conn)
+{
+	echo "Database connection faild...";
+}
 
 session_start();
 
@@ -116,8 +120,8 @@ if(isset($_POST['order_btn'])){
          <div class="inputBox">
             <span>Payment Method :</span>
             <select name="method">
-               <option value="Cash on delivery">Cash on delivery</option>
-               <option value="Credit card">Credit card</option>
+               <option value="Cash on delivery">Cash On Delivery</option>
+               <option value="Credit card">Credit Card</option>
                <option value="Paypal">Paypal</option>
                <option value="Applepay">Apple Pay</option>
             </select>
