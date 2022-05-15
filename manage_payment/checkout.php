@@ -1,6 +1,10 @@
 <?php
 
-include 'config.php';
+$conn = mysqli_connect("localhost:3306","root","","shop_db");
+if(!$conn)
+{
+	echo "Database connection faild...";
+}
 
 session_start();
 
@@ -17,7 +21,7 @@ if(isset($_POST['order_btn'])){
    $email = mysqli_real_escape_string($conn, $_POST['email']);
    $method = mysqli_real_escape_string($conn, $_POST['method']);
    $address = mysqli_real_escape_string($conn, 'flat no. '. $_POST['flat'].', '. $_POST['street'].', '. $_POST['city'].', '. $_POST['country'].' - '. $_POST['post_code']);
-   $placed_on = date('d-M-Y');
+   $issues_date = date('d-M-Y');
 
    $cart_total = 0;
    $cart_products[] = '';
@@ -57,7 +61,7 @@ if(isset($_POST['order_btn'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>checkout</title>
+   <title>Checkout</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -71,8 +75,8 @@ if(isset($_POST['order_btn'])){
 <?php include 'header.php'; ?>
 
 <div class="heading">
-   <h3>checkout</h3>
-   <p> <a href="home.php">home</a> / checkout </p>
+   <h3>Checkout</h3>
+   <p> <a href="home.php">Home</a> / Checkout </p>
 </div>
 
 <section class="display-order">
@@ -110,16 +114,16 @@ if(isset($_POST['order_btn'])){
             <input type="number" name="number" required placeholder="Enter your phone number">
          </div>
          <div class="inputBox">
-            <span>Receiver's Email* :</span>
+            <span>Email* :</span>
             <input type="email" name="email" required placeholder="Enter your email">
          </div>
          <div class="inputBox">
             <span>Payment Method :</span>
             <select name="method">
-               <option value="Cash on delivery">Cash on delivery</option>
-               <option value="Credit card">Credit card</option>
+               <option value="Cash on delivery">Cash On Delivery</option>
+               <option value="Credit card">Credit Card</option>
                <option value="Paypal">Paypal</option>
-               <option value="Gopay">Gopay</option>
+               <option value="Applepay">Apple Pay</option>
             </select>
          </div>
          <div class="inputBox">
