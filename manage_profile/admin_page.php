@@ -1,53 +1,148 @@
+<?php
+
+include 'config.php';
+
+session_start();
+
+$admin_id = $_SESSION['admin_id'];
+
+if(!isset($admin_id)){
+   header('location:login.php');
+}
+
+?>
+
 <!DOCTYPE html>
-<html>
-    <head>
-    <title>Bookly.</title>
-    <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://kit.fontawesome.com/93a36b9820.js" crossorigin="anonymous"></script>
-                
-        <link rel="stylesheet" type="text/css" href="http://localhost/ABP_Project/css/admin.css">
-    </head>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>admin panel</title>
 
-    <body>
-        <header class="p-3 bg-light text-black">
-            <div class="container">
-                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <a href="http://localhost/ABP_Project/manage_profile/admin_page.php" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"><h3 style="color: purple;">AdminPanel</h3>
-                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">></svg>
-                    </a>
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href="http://localhost/ABP_Project/manage_profile/admin_page.php">Home</a></li>
-                        <li><a href="http://localhost/ABP_Project/manage_product/admin_product.php">Products</a></li>
-                        <li><a href="http://localhost/ABP_Project/manage_order/admin_order.php">Orders</a></li>
-                        <li><a href="http://localhost/ABP_Project/manage_profile/admin_user.php">Users</a></li>
-                    </ul>
+   <!-- custom admin css file link  -->
+   <link rel="stylesheet" href="css/admin_style.css">
 
-                    <div class="text-end">
-                        <ul>
-                            <li><a href="http://localhost/ABP_Project/manage_profile/user_profile.php"><i class="fa fa-user"></i> Profile</a></li>
-                            <li><a href="http://localhost/ABP_Project/logout.php">Sign out</a></li>
-                        </ul>    
-                    </div>
-                </div>
-            </div>
-        </header>
+</head>
+<body>
+   
+<?php include 'admin_header.php'; ?>
 
-        <div class="p-3 bg-light text-black">
-            <div class="container">
-                <footer class="d-flex flex-wrap justify-content-between align-items-center py-2 my-3 border-top">
-                    <p class="col-md-4 mb-0 text-muted">&copy; BOOKSHOP 2022 | All Rights Reserved </p>
+<!-- admin dashboard section starts  -->
 
-                    <ul class="nav col-md-4 justify-content-end">
-                    <li class="nav-item"><a href="http://localhost/ABP_Project/home.php" class="nav-link px-2 text-muted">Home</a></li>
-                    <li class="nav-item"><a href="http://localhost/ABP_Project/manage_shop/contact.php" class="nav-link px-2 text-muted">Contact</a></li>
-                    <li class="nav-item"><a href="http://localhost/ABP_Project/manage_shop/about.php" class="nav-link px-2 text-muted">About</a></li>
-                    </ul>
-                </footer>
-            </div>
-        </div>
-    </body>
+<section class="dashboard">
+
+   <h1 class="title">dashboard</h1>
+
+   <div class="box-container">
+
+      <div class="box">
+         <?php
+            $total_pendings = 0;
+            $select_pending = mysqli_query($conn, "SELECT total_price FROM `orders` WHERE payment_status = 'pending'") or die('query failed');
+            if(mysqli_num_rows($select_pending) > 0){
+               while($fetch_pendings = mysqli_fetch_assoc($select_pending)){
+                  $total_price = $fetch_pendings['total_price'];
+                  $total_pendings += $total_price;
+               };
+            };
+         ?>
+         <h3>$<?php echo $total_pendings; ?>/-</h3>
+         <p>total pendings</p>
+      </div>
+
+      <div class="box">
+         <?php
+            $total_completed = 0;
+            $select_completed = mysqli_query($conn, "SELECT total_price FROM `orders` WHERE payment_status = 'completed'") or die('query failed');
+            if(mysqli_num_rows($select_completed) > 0){
+               while($fetch_completed = mysqli_fetch_assoc($select_completed)){
+                  $total_price = $fetch_completed['total_price'];
+                  $total_completed += $total_price;
+               };
+            };
+         ?>
+         <h3>$<?php echo $total_completed; ?>/-</h3>
+         <p>completed payments</p>
+      </div>
+
+      <div class="box">
+         <?php 
+            $select_orders = mysqli_query($conn, "SELECT * FROM `orders`") or die('query failed');
+            $number_of_orders = mysqli_num_rows($select_orders);
+         ?>
+         <h3><?php echo $number_of_orders; ?></h3>
+         <p>order placed</p>
+      </div>
+
+      <div class="box">
+         <?php 
+            $select_products = mysqli_query($conn, "SELECT * FROM `products`") or die('query failed');
+            $number_of_products = mysqli_num_rows($select_products);
+         ?>
+         <h3><?php echo $number_of_products; ?></h3>
+         <p>products added</p>
+      </div>
+
+      <div class="box">
+         <?php 
+            $select_users = mysqli_query($conn, "SELECT * FROM `users` WHERE user_type = 'user'") or die('query failed');
+            $number_of_users = mysqli_num_rows($select_users);
+         ?>
+         <h3><?php echo $number_of_users; ?></h3>
+         <p>normal users</p>
+      </div>
+
+      <div class="box">
+         <?php 
+            $select_admins = mysqli_query($conn, "SELECT * FROM `users` WHERE user_type = 'admin'") or die('query failed');
+            $number_of_admins = mysqli_num_rows($select_admins);
+         ?>
+         <h3><?php echo $number_of_admins; ?></h3>
+         <p>admin users</p>
+      </div>
+
+      <div class="box">
+         <?php 
+            $select_account = mysqli_query($conn, "SELECT * FROM `users`") or die('query failed');
+            $number_of_account = mysqli_num_rows($select_account);
+         ?>
+         <h3><?php echo $number_of_account; ?></h3>
+         <p>total accounts</p>
+      </div>
+
+      <div class="box">
+         <?php 
+            $select_messages = mysqli_query($conn, "SELECT * FROM `message`") or die('query failed');
+            $number_of_messages = mysqli_num_rows($select_messages);
+         ?>
+         <h3><?php echo $number_of_messages; ?></h3>
+         <p>new messages</p>
+      </div>
+
+   </div>
+
+</section>
+
+<!-- admin dashboard section ends -->
+
+
+
+
+
+
+
+
+
+<!-- custom admin js file link  -->
+<script src="js/admin_script.js"></script>
+
+</body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 76ff833fee754c786161d386581ab733ccfb7b3d
