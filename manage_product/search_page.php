@@ -41,6 +41,7 @@ if(isset($_POST['add_to_cart'])){
     </head>
 
     <body>
+        <!--  HEADER -->
         <header class="p-3 bg-dark text-white">
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -66,6 +67,7 @@ if(isset($_POST['add_to_cart'])){
             </div>
         </header>
 
+        <!-- -->
         <div class="modal-content rounded-5 shadow">
             <div class ="row py-lg-4">
                 <div class ="py-4 text-center container">
@@ -115,6 +117,7 @@ if(isset($_POST['add_to_cart'])){
             </div>
         </div>
 
+        <!-- FOOTER -->
         <div class="p-3 bg-dark text-white">
             <div class="container">
                 <footer class="d-flex flex-wrap justify-content-between align-items-center py-2 my-3 border-top">

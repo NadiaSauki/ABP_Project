@@ -90,6 +90,7 @@ if(isset($_POST['update_product'])){
     </head>
 
     <body>
+        <!-- HEADER -->
         <header class="p-3 bg-light text-black">
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
@@ -114,6 +115,7 @@ if(isset($_POST['update_product'])){
             </div>
         </header>
 
+        <!-- -->
         <div class="py-4 text-center container">
             <div class="row py-lg-4">    
                 <h1 class="fw-bold mb-0" style="color: purple;">SHOP PRODUCTS</h1>
@@ -152,6 +154,7 @@ if(isset($_POST['update_product'])){
             </div>
         </div>
 
+        <!-- -->
         <div class="modal-content rounded-5 shadow">
             <div class="show-products">
                 <div class="row py-lg-4">
@@ -179,6 +182,7 @@ if(isset($_POST['update_product'])){
             </div>
         </div>
         
+        <!-- -->
         <div class="modal-content rounded-5 shadow">
             <div  class="row py-lg-4">
                 <div class="edit-product-form">
@@ -210,6 +214,7 @@ if(isset($_POST['update_product'])){
             </div>
         </div>
         
+        <!-- FOOTER -->
         <div class="p-3 bg-light text-black">
             <div class="container">
                 <footer class="d-flex flex-wrap justify-content-between align-items-center py-2 my-3 border-top">
