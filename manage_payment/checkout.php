@@ -1,54 +1,169 @@
+<?php
+
+include 'config.php';
+
+session_start();
+
+$user_id = $_SESSION['user_id'];
+
+if(!isset($user_id)){
+   header('location:login.php');
+}
+
+if(isset($_POST['order_btn'])){
+
+   $name = mysqli_real_escape_string($conn, $_POST['name']);
+   $number = $_POST['number'];
+   $email = mysqli_real_escape_string($conn, $_POST['email']);
+   $method = mysqli_real_escape_string($conn, $_POST['method']);
+   $address = mysqli_real_escape_string($conn, 'flat no. '. $_POST['flat'].', '. $_POST['street'].', '. $_POST['city'].', '. $_POST['country'].' - '. $_POST['post_code']);
+   $placed_on = date('d-M-Y');
+
+   $cart_total = 0;
+   $cart_products[] = '';
+
+   $cart_query = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
+   if(mysqli_num_rows($cart_query) > 0){
+      while($cart_item = mysqli_fetch_assoc($cart_query)){
+         $cart_products[] = $cart_item['name'].' ('.$cart_item['quantity'].') ';
+         $sub_total = ($cart_item['price'] * $cart_item['quantity']);
+         $cart_total += $sub_total;
+      }
+   }
+
+   $total_products = implode(', ',$cart_products);
+
+   $order_query = mysqli_query($conn, "SELECT * FROM `orders` WHERE name = '$name' AND number = '$number' AND email = '$email' AND method = '$method' AND address = '$address' AND total_products = '$total_products' AND total_price = '$cart_total'") or die('query failed');
+
+   if($cart_total == 0){
+      $message[] = 'your cart is empty';
+   }else{
+      if(mysqli_num_rows($order_query) > 0){
+         $message[] = 'order already placed!'; 
+      }else{
+         mysqli_query($conn, "INSERT INTO `orders`(user_id, name, number, email, method, address, total_products, total_price, placed_on) VALUES('$user_id', '$name', '$number', '$email', '$method', '$address', '$total_products', '$cart_total', '$placed_on')") or die('query failed');
+         $message[] = 'order placed successfully!';
+         mysqli_query($conn, "DELETE FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
+      }
+   }
+   
+}
+
+?>
+
 <!DOCTYPE html>
-<html>
-    <head>
-    <title>vvvvv</title>
-    <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://kit.fontawesome.com/93a36b9820.js" crossorigin="anonymous"></script>
-                
-        <link rel="stylesheet" type="text/css" href="http://localhost/ABP_Project/css/style.css">
-    </head>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>checkout</title>
 
-    <body>
-        <header class="p-3 bg-dark text-white">
-            <div class="container">
-                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <a href="http://localhost/ABP_Project/home.php" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"><h3 style="color: purple;">bookly.</h3>
-                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">></svg>
-                    </a>
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href="http://localhost/ABP_Project/manage_shop/about.php">About</a></li>
-                        <li><a href="http://localhost/ABP_Project/manage_product/shop.php">Product</a></li>
-                        <li><a href="http://localhost/ABP_Project/manage_order/order.php">Orders</a></li>
-                    </ul>
+   <!-- custom css file link  -->
+   <link rel="stylesheet" href="css/style.css">
 
-                    <div class="text-end">
-                        <ul>
-                            <li><a href="http://localhost/ABP_Project/manage_product/search_page.php"><i class="fas fa-search"></i> Search</a></li>
-                            <li><a href="http://localhost/ABP_Project/manage_profile/user_profile.php"><i class="fa fa-user"></i> Profile</a></li>
-                            <li><a href="http://localhost/ABP_Project/manage_cart/add_to_cart.php"><i class="fas fa-shopping-cart"></i> Cart</a></li>
-                            <li><a href="http://localhost/ABP_Project/logout.php">Sign out</a></li>
-                        </ul>    
-                    </div>
-                </div>
-            </div>
-        </header>
+</head>
+<body>
+   
+<?php include 'header.php'; ?>
 
-        <div class="p-3 bg-dark text-white">
-            <div class="container">
-                <footer class="d-flex flex-wrap justify-content-between align-items-center py-2 my-3 border-top">
-                    <p class="col-md-4 mb-0 text-muted">&copy; BOOKSHOP 2022 | All Rights Reserved </p>
+<div class="heading">
+   <h3>checkout</h3>
+   <p> <a href="home.php">home</a> / checkout </p>
+</div>
 
-                    <ul class="nav col-md-4 justify-content-end">
-                    <li class="nav-item"><a href="http://localhost/ABP_Project/home.php" class="nav-link px-2 text-muted">Home</a></li>
-                    <li class="nav-item"><a href="http://localhost/ABP_Project/manage_shop/contact.php" class="nav-link px-2 text-muted">Contact</a></li>
-                    <li class="nav-item"><a href="http://localhost/ABP_Project/manage_shop/about.php" class="nav-link px-2 text-muted">About</a></li>
-                    </ul>
-                </footer>
-            </div>
-        </div>
-    </body>
+<section class="display-order">
+
+   <?php  
+      $grand_total = 0;
+      $select_cart = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
+      if(mysqli_num_rows($select_cart) > 0){
+         while($fetch_cart = mysqli_fetch_assoc($select_cart)){
+            $total_price = ($fetch_cart['price'] * $fetch_cart['quantity']);
+            $grand_total += $total_price;
+   ?>
+   <p> <?php echo $fetch_cart['name']; ?> <span>(<?php echo '$'.$fetch_cart['price'].'/-'.' x '. $fetch_cart['quantity']; ?>)</span> </p>
+   <?php
+      }
+   }else{
+      echo '<p class="empty">your cart is empty</p>';
+   }
+   ?>
+   <div class="total-amount"> Total Amount : <span>RM<?php echo $total_amount; ?>/-</span> </div>
+
+</section>
+
+<section class="checkout">
+
+   <form action="" method="post">
+      <h3>Place Your Order</h3>
+      <div class="flex">
+         <div class="inputBox">
+            <span>Receiver's Name* :</span>
+            <input type="text" name="name" required placeholder="Enter your name">
+         </div>
+         <div class="inputBox">
+            <span>Phone Number* :</span>
+            <input type="number" name="number" required placeholder="Enter your phone number">
+         </div>
+         <div class="inputBox">
+            <span>Receiver's Email* :</span>
+            <input type="email" name="email" required placeholder="Enter your email">
+         </div>
+         <div class="inputBox">
+            <span>Payment Method :</span>
+            <select name="method">
+               <option value="Cash on delivery">Cash on delivery</option>
+               <option value="Credit card">Credit card</option>
+               <option value="Paypal">Paypal</option>
+               <option value="Gopay">Gopay</option>
+            </select>
+         </div>
+         <div class="inputBox">
+            <span>Shipping Address :</span>
+            <input type="number" min="0" name="flat" required placeholder="e.g. No.">
+         </div>
+         <div class="inputBox">
+            <span>Shipping Address :</span>
+            <input type="text" name="street" required placeholder="e.g. Street name">
+         </div>
+         <div class="inputBox">
+            <span>City :</span>
+            <input type="text" name="city" required placeholder="e.g. Kuantan">
+         </div>
+         <div class="inputBox">
+            <span>State :</span>
+            <input type="text" name="state" required placeholder="e.g. Pahang">
+         </div>
+         <div class="inputBox">
+            <span>Country :</span>
+            <input type="text" name="country" required placeholder="e.g. Malaysia">
+         </div>
+         <div class="inputBox">
+            <span>Postcode :</span>
+            <input type="number" min="0" name="post_code" required placeholder="e.g. 123456">
+         </div>
+      </div>
+      <input type="submit" value="order now" class="btn" name="order_btn">
+   </form>
+
+</section>
+
+
+
+
+
+
+
+
+
+<?php include 'footer.php'; ?>
+
+<!-- custom js file link  -->
+<script src="js/script.js"></script>
+
+</body>
 </html>
