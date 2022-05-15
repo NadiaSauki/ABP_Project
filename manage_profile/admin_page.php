@@ -141,4 +141,8 @@ if(!isset($admin_id)){
 <script src="js/admin_script.js"></script>
 
 </body>
+<<<<<<< HEAD
 </html>
+=======
+</html>
+>>>>>>> 76ff833fee754c786161d386581ab733ccfb7b3d
