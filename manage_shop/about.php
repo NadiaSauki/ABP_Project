@@ -1,7 +1,10 @@
 <?php
 
-include 'config.php';
-
+$conn = mysqli_connect("localhost:3306","root","","shop");
+if(!$conn)
+{
+	echo "Database connection faild...";
+}
 session_start();
 
 $user_id = $_SESSION['user_id'];
