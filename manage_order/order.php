@@ -1,12 +1,12 @@
 <?php
 
-/*$conn = mysqli_connect("localhost:3306","root","","shop_db");
+$conn = mysqli_connect("localhost:3306","root","","shop_db");
 if(!$conn)
 {
 	echo "Database connection faild...";
 }
 
-session_start();*/
+session_start();
 
 ?>
 
