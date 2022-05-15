@@ -1,14 +1,12 @@
 <?php
 
-include 'config.php';
-
-session_start();
-
-$user_id = $_SESSION['user_id'];
-
-if(!isset($user_id)){
-   header('location:login.php');
+/*$conn = mysqli_connect("localhost:3306","root","","shop_db");
+if(!$conn)
+{
+	echo "Database connection faild...";
 }
+
+session_start();*/
 
 ?>
 
@@ -67,12 +65,6 @@ if(!isset($user_id)){
    </div>
 
 </section>
-
-
-
-
-
-
 
 
 <?php include 'footer.php'; ?>
