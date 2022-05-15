@@ -11,23 +11,21 @@ session_start();
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
-<head>
-   <meta charset="UTF-8">
-   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>orders</title>
+<html>
+    <head>
+    <title>Bookly.</title>
+    <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://kit.fontawesome.com/93a36b9820.js" crossorigin="anonymous"></script>
+                
+        <link rel="stylesheet" type="text/css" href="http://localhost/ABP_Project/css/style.css">
+    </head>
 
-   <!-- font awesome cdn link  -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
-   <!-- custom css file link  -->
-   <link rel="stylesheet" href="css/style.css">
-
-</head>
-<body>
-   <!-- HEADER -->
-   <header class="p-3 bg-dark text-white">
+    <body>
+        <!-- HEADER -->
+        <header class="p-3 bg-dark text-white">
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                     <a href="http://localhost/ABP_Project/home.php" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"><h3 style="color: purple;">bookly.</h3>
@@ -52,22 +50,8 @@ session_start();
             </div>
         </header>
 
-    <!-- FOOTER -->
-    <div class="p-3 bg-dark text-white">
-            <div class="container">
-                <footer class="d-flex flex-wrap justify-content-between align-items-center py-2 my-3 border-top">
-                    <p class="col-md-4 mb-0 text-muted">&copy; BOOKSHOP 2022 | All Rights Reserved </p>
-
-                    <ul class="nav col-md-4 justify-content-end">
-                    <li class="nav-item"><a href="http://localhost/ABP_Project/home.php" class="nav-link px-2 text-muted">Home</a></li>
-                    <li class="nav-item"><a href="http://localhost/ABP_Project/manage_shop/contact.php" class="nav-link px-2 text-muted">Contact</a></li>
-                    <li class="nav-item"><a href="http://localhost/ABP_Project/manage_shop/about.php" class="nav-link px-2 text-muted">About</a></li>
-                    </ul>
-                </footer>    
-   
-<?php include 'header.php'; ?>
-
-<div class="heading">
+        <!-- -->
+        <div class="heading">
    <h3>your orders</h3>
    <p> <a href="home.php">home</a> / orders </p>
 </div>
@@ -104,11 +88,19 @@ session_start();
 
 </section>
 
+        <!-- FOOTER -->
+        <div class="p-3 bg-dark text-white">
+            <div class="container">
+                <footer class="d-flex flex-wrap justify-content-between align-items-center py-2 my-3 border-top">
+                    <p class="col-md-4 mb-0 text-muted">&copy; BOOKSHOP 2022 | All Rights Reserved </p>
 
-<?php include 'footer.php'; ?>
-
-<!-- custom js file link  -->
-<script src="js/script.js"></script>
-
-</body>
+                    <ul class="nav col-md-4 justify-content-end">
+                    <li class="nav-item"><a href="http://localhost/ABP_Project/home.php" class="nav-link px-2 text-muted">Home</a></li>
+                    <li class="nav-item"><a href="http://localhost/ABP_Project/manage_shop/contact.php" class="nav-link px-2 text-muted">Contact</a></li>
+                    <li class="nav-item"><a href="http://localhost/ABP_Project/manage_shop/about.php" class="nav-link px-2 text-muted">About</a></li>
+                    </ul>
+                </footer>
+            </div>
+        </div>
+    </body>
 </html>
