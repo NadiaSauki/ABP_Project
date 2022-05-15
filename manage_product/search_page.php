@@ -76,11 +76,13 @@ if(isset($_POST['add_to_cart'])){
                 </div>
 
                 <div class="modal-content rounded-5 shadow">
-                    <div class="search-form">
-                        <form action="" method="post">
-                            <input type="text" name="search" placeholder="Search Products" class="box">
-                            <input type="submit" name="submit" value="Search" class="btn">
-                        </form>
+                    <div class ="row py-lg-4">
+                        <div class="search-form">
+                            <form action="" method="post">
+                                <input type="text" name="search" placeholder="Search Products" class="box">
+                                <input type="submit" name="submit" value="Search" class="btn">
+                            </form>
+                        </div>
                     </div>
 
                     <div class="products" style="padding-top: 0;">

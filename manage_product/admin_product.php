@@ -1,12 +1,14 @@
 <?php
 
-$conn = mysqli_connect("localhost:3306","root","","shop_db");
-if(!$conn)
-{
-	echo "Database connection faild...";
-}
+include 'config.php';
 
 session_start();
+
+$admin_id = $_SESSION['admin_id'];
+
+if(!isset($admin_id)){
+   header('location:login.php');
+};
 
 if(isset($_POST['add_product'])){
 
@@ -30,7 +32,7 @@ if(isset($_POST['add_product'])){
          }else{
             move_uploaded_file($image_tmp_name, $image_folder);
             $message[] = 'product added successfully!';
-         } //LINE 31 NEED TO ADJUST, WHY CAN'T UPLOAD IMAGE
+         }
       }else{
          $message[] = 'product could not be added!';
       }
@@ -77,156 +79,107 @@ if(isset($_POST['update_product'])){
 ?>
 
 <!DOCTYPE html>
-<html>
-    <head>
-    <title>Bookly.</title>
-    <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://kit.fontawesome.com/93a36b9820.js" crossorigin="anonymous"></script>
-                
-        <link rel="stylesheet" type="text/css" href="http://localhost/ABP_Project/css/admin.css">
-    </head>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>products</title>
 
-    <body>
-        <!-- HEADER -->
-        <header class="p-3 bg-light text-black">
-            <div class="container">
-                <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <a href="http://localhost/ABP_Project/manage_profile/admin_page.php" class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"><h3 style="color: purple;">AdminPanel</h3>
-                    <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">></svg>
-                    </a>
+   <!-- font awesome cdn link  -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-                    <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li><a href="http://localhost/ABP_Project/manage_profile/admin_page.php">Home</a></li>
-                        <li><a href="http://localhost/ABP_Project/manage_product/admin_product.php">Products</a></li>
-                        <li><a href="http://localhost/ABP_Project/manage_order/admin_order.php">Orders</a></li>
-                        <li><a href="http://localhost/ABP_Project/manage_profile/admin_user.php">Users</a></li>
-                    </ul>
+   <!-- custom admin css file link  -->
+   <link rel="stylesheet" href="css/admin_style.css">
 
-                    <div class="text-end">
-                        <ul>
-                            <li><a href="http://localhost/ABP_Project/manage_profile/user_profile.php"><i class="fa fa-user"></i> Profile</a></li>
-                            <li><a href="http://localhost/ABP_Project/logout.php">Sign out</a></li>
-                        </ul>    
-                    </div>
-                </div>
-            </div>
-        </header>
+</head>
+<body>
+   
+<?php include 'admin_header.php'; ?>
 
-        <!-- -->
-        <div class="py-4 text-center container">
-            <div class="row py-lg-4">    
-                <h1 class="fw-bold mb-0" style="color: purple;">SHOP PRODUCTS</h1>
-            </div>        
+<!-- product CRUD section starts  -->
 
-            <div class="modal-content rounded-5 shadow">
-                <div class="row py-lg-4">
-                <h2 class="fw-light">ADD PRODUCTS</h2>
-                    <div class="modal-body p-5 pt-4">
-                        <form action="" method="post" enctype="multipart/form-data">
-                            <div class="form-floating mb-4">
-                                <input type="text" name="name" class="form-control rounded-4" placeholder="Enter Product Name" required>
-                                <label for="">Enter Product Name</label>
-                            </div>
+<section class="add-products">
 
-                            <div class="form-floating mb-4">
-                                <input type="number" min="0" name="price" class="form-control rounded-4" placeholder="Enter Product Price" required>
-                                <label for="">Enter Product Price</label>
-                            </div>
+   <h1 class="title">shop products</h1>
 
-                            <div class="form-floating mb-4">
-                                <input type="text" name="detail" class="form-control rounded-4" placeholder="Enter Product Details">
-                                <label for="">Enter Product Details</label>
-                            </div>
+   <form action="" method="post" enctype="multipart/form-data">
+      <h3>add product</h3>
+      <input type="text" name="name" class="box" placeholder="enter product name" required>
+      <input type="number" min="0" name="price" class="box" placeholder="enter product price" required>
+      <input type="file" name="image" accept="image/jpg, image/jpeg, image/png" class="box" required>
+      <input type="submit" value="add product" name="add_product" class="btn">
+   </form>
 
-                            <div class="form-floating mb-4">
-                                <input type="file" name="image" class="form-control rounded-4" placeholder="Insert Product Image" accept="image/jpg, image/jpeg, image/png">
-                            </div>
+</section>
 
-                            <div class="form-floating mb-4">
-                                <input type="submit" value="add product" name="add_product" class="btn">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- product CRUD section ends -->
 
-        <!-- -->
-        <div class="modal-content rounded-5 shadow">
-            <div class="show-products">
-                <div class="row py-lg-4">
-                    <div class="box-container">
-                        <?php
-                            $select_products = mysqli_query($conn, "SELECT * FROM `products`") or die('query failed');
-                            if(mysqli_num_rows($select_products) > 0){
-                                while($fetch_products = mysqli_fetch_assoc($select_products)){
-                        ?>
-                        <div class="box">
-                            <img src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
-                            <div class="name"><?php echo $fetch_products['name']; ?></div>
-                            <div class="price">$<?php echo $fetch_products['price']; ?>/-</div>
-                            <a href="admin_products.php?update=<?php echo $fetch_products['id']; ?>" class="option-btn">update</a>
-                            <a href="admin_products.php?delete=<?php echo $fetch_products['id']; ?>" class="delete-btn" onclick="return confirm('delete this product?');">delete</a>
-                        </div>
-                        <?php
-                            }
-                        }else{
-                            echo '<p class="empty">no products added yet!</p>';
-                        }
-                        ?>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- -->
-        <div class="modal-content rounded-5 shadow">
-            <div  class="row py-lg-4">
-                <div class="edit-product-form">
-                    <?php
-                        if(isset($_GET['update'])){
-                            $update_id = $_GET['update'];
-                            $update_query = mysqli_query($conn, "SELECT * FROM `products` WHERE id = '$update_id'") or die('query failed');
-                            if(mysqli_num_rows($update_query) > 0){
-                                while($fetch_update = mysqli_fetch_assoc($update_query)){
-                    ?>
-                    <form action="" method="post" enctype="multipart/form-data">
-                        <input type="hidden" name="update_p_id" value="<?php echo $fetch_update['id']; ?>">
-                        <input type="hidden" name="update_old_image" value="<?php echo $fetch_update['image']; ?>">
-                        <img src="uploaded_img/<?php echo $fetch_update['image']; ?>" alt="">
-                        <input type="text" name="update_name" value="<?php echo $fetch_update['name']; ?>" class="box" required placeholder="enter product name">
-                        <input type="number" name="update_price" value="<?php echo $fetch_update['price']; ?>" min="0" class="box" required placeholder="enter product price">
-                        <input type="file" class="box" name="update_image" accept="image/jpg, image/jpeg, image/png">
-                        <input type="submit" value="update" name="update_product" class="btn">
-                        <input type="reset" value="cancel" id="close-update" class="option-btn">
-                    </form>
-                    <?php
-                            }
-                        }
-                        }else{
-                            echo '<script>document.querySelector(".edit-product-form").style.display = "none";</script>';
-                        }
-                    ?>
-                </div>
-            </div>
-        </div>
-        
-        <!-- FOOTER -->
-        <div class="p-3 bg-light text-black">
-            <div class="container">
-                <footer class="d-flex flex-wrap justify-content-between align-items-center py-2 my-3 border-top">
-                    <p class="col-md-4 mb-0 text-muted">&copy; BOOKSHOP 2022 | All Rights Reserved </p>
+<!-- show products  -->
 
-                    <ul class="nav col-md-4 justify-content-end">
-                    <li class="nav-item"><a href="http://localhost/ABP_Project/home.php" class="nav-link px-2 text-muted">Home</a></li>
-                    <li class="nav-item"><a href="http://localhost/ABP_Project/manage_shop/contact.php" class="nav-link px-2 text-muted">Contact</a></li>
-                    <li class="nav-item"><a href="http://localhost/ABP_Project/manage_shop/about.php" class="nav-link px-2 text-muted">About</a></li>
-                    </ul>
-                </footer>
-            </div>
-        </div>
-    </body>
+<section class="show-products">
+
+   <div class="box-container">
+
+      <?php
+         $select_products = mysqli_query($conn, "SELECT * FROM `products`") or die('query failed');
+         if(mysqli_num_rows($select_products) > 0){
+            while($fetch_products = mysqli_fetch_assoc($select_products)){
+      ?>
+      <div class="box">
+         <img src="uploaded_img/<?php echo $fetch_products['image']; ?>" alt="">
+         <div class="name"><?php echo $fetch_products['name']; ?></div>
+         <div class="price">$<?php echo $fetch_products['price']; ?>/-</div>
+         <a href="admin_products.php?update=<?php echo $fetch_products['id']; ?>" class="option-btn">update</a>
+         <a href="admin_products.php?delete=<?php echo $fetch_products['id']; ?>" class="delete-btn" onclick="return confirm('delete this product?');">delete</a>
+      </div>
+      <?php
+         }
+      }else{
+         echo '<p class="empty">no products added yet!</p>';
+      }
+      ?>
+   </div>
+
+</section>
+
+<section class="edit-product-form">
+
+   <?php
+      if(isset($_GET['update'])){
+         $update_id = $_GET['update'];
+         $update_query = mysqli_query($conn, "SELECT * FROM `products` WHERE id = '$update_id'") or die('query failed');
+         if(mysqli_num_rows($update_query) > 0){
+            while($fetch_update = mysqli_fetch_assoc($update_query)){
+   ?>
+   <form action="" method="post" enctype="multipart/form-data">
+      <input type="hidden" name="update_p_id" value="<?php echo $fetch_update['id']; ?>">
+      <input type="hidden" name="update_old_image" value="<?php echo $fetch_update['image']; ?>">
+      <img src="uploaded_img/<?php echo $fetch_update['image']; ?>" alt="">
+      <input type="text" name="update_name" value="<?php echo $fetch_update['name']; ?>" class="box" required placeholder="enter product name">
+      <input type="number" name="update_price" value="<?php echo $fetch_update['price']; ?>" min="0" class="box" required placeholder="enter product price">
+      <input type="file" class="box" name="update_image" accept="image/jpg, image/jpeg, image/png">
+      <input type="submit" value="update" name="update_product" class="btn">
+      <input type="reset" value="cancel" id="close-update" class="option-btn">
+   </form>
+   <?php
+         }
+      }
+      }else{
+         echo '<script>document.querySelector(".edit-product-form").style.display = "none";</script>';
+      }
+   ?>
+
+</section>
+
+
+
+
+
+
+
+<!-- custom admin js file link  -->
+<script src="js/admin_script.js"></script>
+
+</body>
 </html>
