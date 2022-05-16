@@ -16,8 +16,8 @@ if(isset($_POST['order_btn'])){
    $Number = $_POST['number'];
    $Email = mysqli_real_escape_string($conn, $_POST['email']);
    $Method = mysqli_real_escape_string($conn, $_POST['method']);
-   $Shipping_Address = mysqli_real_escape_string($conn, 'House no. '. $_POST['flat'].', '. $_POST['street'].', '. $_POST['city'].', '. $_POST['country'].' - '. $_POST['pin_code']);
-   $Issues_on = date('d-M-Y');
+   $Shipping_Address = mysqli_real_escape_string($conn, 'House no. '. $_POST['flat'].', '. $_POST['street'].', '. $_POST['city'].', '. $_POST['country'].' - '. $_POST['postcode']);
+   $Issues_On = date('d-M-Y');
 
    $Cart_total = 0;
    $Cart_products[] = '';
@@ -33,7 +33,7 @@ if(isset($_POST['order_btn'])){
 
    $Total_products = implode(', ',$Cart_products);
 
-   $Order_query = mysqli_query($conn, "SELECT * FROM `orders` WHERE name = '$name' AND number = '$number' AND email = '$email' AND method = '$method' AND address = '$address' AND total_products = '$total_products' AND total_price = '$cart_total'") or die('query failed');
+   $Order_query = mysqli_query($conn, "SELECT * FROM `orders` WHERE name = '$Receiver_Name' AND number = '$Number' AND email = '$Email' AND method = '$Method' AND address = '$Shipping_Address' AND total_products = '$Total_products' AND total_price = '$Cart_total'") or die('query failed');
 
    if($Cart_total == 0){
       $message[] = 'your cart is empty';
@@ -41,7 +41,7 @@ if(isset($_POST['order_btn'])){
       if(mysqli_num_rows($order_query) > 0){
          $message[] = 'order already placed!'; 
       }else{
-         mysqli_query($conn, "INSERT INTO `orders`(user_id, name, number, email, method, address, total_products, total_price, placed_on) VALUES('$user_id', '$name', '$number', '$email', '$method', '$address', '$total_products', '$cart_total', '$placed_on')") or die('query failed');
+         mysqli_query($conn, "INSERT INTO `orders`(user_id, Receiver_Name, Number, Email, Method, Shipping_Address, Total_products, Total_price, Issues_On) VALUES('$user_id', '$Receive_Name', '$Number', '$Email', '$Method', '$Shipping_Address', '$Total_products', '$Cart_total', '$Issues_on')") or die('query failed');
          $message[] = 'order placed successfully!';
          mysqli_query($conn, "DELETE FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
       }
