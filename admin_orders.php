@@ -58,14 +58,14 @@ if(isset($_GET['delete'])){
       ?>
       <div class="box">
          <p> user id : <span><?php echo $fetch_orders['user_id']; ?></span> </p>
-         <p> Issues On : <span><?php echo $fetch_orders['Issues_On']; ?></span> </p>
-         <p> Receiver Name : <span><?php echo $fetch_orders['Receiver_Name']; ?></span> </p>
-         <p> Number : <span><?php echo $fetch_orders['Number']; ?></span> </p>
-         <p> Email : <span><?php echo $fetch_orders['Email']; ?></span> </p>
-         <p> Shipping Address : <span><?php echo $fetch_orders['Shipping_Address']; ?></span> </p>
-         <p> Total products : <span><?php echo $fetch_orders['Total_products']; ?></span> </p>
-         <p> Total price : <span>$<?php echo $fetch_orders['Total_price']; ?>/-</span> </p>
-         <p> Payment method : <span><?php echo $fetch_orders['Method']; ?></span> </p>
+         <p> placed on : <span><?php echo $fetch_orders['placed_on']; ?></span> </p>
+         <p> name : <span><?php echo $fetch_orders['name']; ?></span> </p>
+         <p> number : <span><?php echo $fetch_orders['number']; ?></span> </p>
+         <p> email : <span><?php echo $fetch_orders['email']; ?></span> </p>
+         <p> address : <span><?php echo $fetch_orders['address']; ?></span> </p>
+         <p> total products : <span><?php echo $fetch_orders['total_products']; ?></span> </p>
+         <p> total price : <span>$<?php echo $fetch_orders['total_price']; ?>/-</span> </p>
+         <p> payment method : <span><?php echo $fetch_orders['method']; ?></span> </p>
          <form action="" method="post">
             <input type="hidden" name="order_id" value="<?php echo $fetch_orders['id']; ?>">
             <select name="update_payment">
