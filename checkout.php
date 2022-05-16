@@ -12,8 +12,8 @@ if(!isset($user_id)){
 
 if(isset($_POST['order_btn'])){
 
-   $Receiver_Name = mysqli_real_escape_string($conn, $_POST['name']);
-   $Number = $_POST['number'];
+   $Receiver_Name = mysqli_real_escape_string($conn, $_POST['Receiver_Name']);
+   $Number = $_POST['Number'];
    $Email = mysqli_real_escape_string($conn, $_POST['email']);
    $Method = mysqli_real_escape_string($conn, $_POST['method']);
    $Shipping_Address = mysqli_real_escape_string($conn, 'House no. '. $_POST['flat'].', '. $_POST['street'].', '. $_POST['city'].', '. $_POST['country'].' - '. $_POST['postcode']);
@@ -25,7 +25,7 @@ if(isset($_POST['order_btn'])){
    $Cart_query = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
    if(mysqli_num_rows($Cart_query) > 0){
       while($cart_item = mysqli_fetch_assoc($Cart_query)){
-         $Cart_products[] = $Cart_item['name'].' ('.$Cart_item['quantity'].') ';
+         $Cart_products[] = $Cart_item['Receiver_Name'].' ('.$Cart_item['quantity'].') ';
          $Sub_total = ($Cart_item['price'] * $Cart_item['quantity']);
          $Cart_total += $Sub_total;
       }
