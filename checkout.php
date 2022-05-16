@@ -33,7 +33,7 @@ if(isset($_POST['order_btn'])){
 
    $Total_products = implode(', ',$Cart_products);
 
-   $Order_query = mysqli_query($conn, "SELECT * FROM `orders` WHERE name = '$Receiver_Name' AND number = '$Number' AND email = '$Email' AND method = '$Method' AND address = '$Shipping_Address' AND total_products = '$Total_products' AND total_price = '$Cart_total'") or die('query failed');
+   $Order_query = mysqli_query($conn, "SELECT * FROM `orders` WHERE Receiver Name = '$Receiver_Name' AND Number = '$Number' AND Email = '$Email' AND Method = '$Method' AND Shipping Address = '$Shipping_Address' AND total_products = '$Total_products' AND total_price = '$Cart_total'") or die('query failed');
 
    if($Cart_total == 0){
       $message[] = 'your cart is empty';
@@ -103,19 +103,19 @@ if(isset($_POST['order_btn'])){
       <div class="flex">
          <div class="inputBox">
             <span>Receiver Name :</span>
-            <input type="text" name="name" required placeholder="Enter Your Name">
+            <input type="text" name="Receiver Name" required placeholder="Enter Your Name">
          </div>
          <div class="inputBox">
             <span>Number :</span>
-            <input type="number" name="number" required placeholder="Enter Your Number">
+            <input type="number" name="Number" required placeholder="Enter Your Number">
          </div>
          <div class="inputBox">
             <span>Email :</span>
-            <input type="email" name="email" required placeholder="Enter Your Email">
+            <input type="email" name="Email" required placeholder="Enter Your Email">
          </div>
          <div class="inputBox">
             <span>Payment Method :</span>
-            <select name="method">
+            <select name="Method">
                <option value="cash on delivery">Cash On Delivery</option>
                <option value="credit card">Credit Card</option>
                <option value="paypal">Paypal</option>
