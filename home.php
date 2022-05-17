@@ -99,7 +99,7 @@ if(isset($_POST['add_to_cart'])){
    <div class="flex">
 
       <div class="image">
-         <img src="images/about-img.jpg" alt="">
+         <img src="images/abt-img.png" alt="">
       </div>
 
       <div class="content">
