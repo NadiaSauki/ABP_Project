@@ -145,7 +145,7 @@ if(!isset($user_id)){
 
 <section class="authors">
 
-   <h1 class="title">greate authors</h1>
+   <h1 class="title">Best authors</h1>
 
    <div class="box-container">
 
