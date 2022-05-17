@@ -52,7 +52,7 @@ if(isset($_POST['add_to_cart'])){
 <section class="home">
 
    <div class="content">
-      <h3>WELCOME TO juBook.</h3>
+      <h3>WELCOME TO juBook</h3>
       <p>Find your favourite books here</p>
       <a href="about.php" class="white-btn">discover more</a>
    </div>
