@@ -12,12 +12,12 @@ if(!isset($user_id)){
 
 if(isset($_POST['order_btn'])){
 
-   $name = mysqli_real_escape_string($conn, $_POST['name']);
-   $number = $_POST['number'];
-   $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $method = mysqli_real_escape_string($conn, $_POST['method']);
-   $address = mysqli_real_escape_string($conn, 'House No. '. $_POST['flat'].', '. $_POST['street'].', '. $_POST['city'].', '. $_POST['country'].' - '. $_POST['post_code']);
-   $placed_on = date('d-M-Y');
+   $Receiver_Name = mysqli_real_escape_string($conn, $_POST['receiver name']);
+   $Phone_Number = $_POST['phone number'];
+   $Email = mysqli_real_escape_string($conn, $_POST['email']);
+   $Payment_Method = mysqli_real_escape_string($conn, $_POST['method']);
+   $Shipping_Address = mysqli_real_escape_string($conn, 'House No. '. $_POST['flat'].', '. $_POST['street'].', '. $_POST['city'].', '. $_POST['country'].' - '. $_POST['post_code']);
+   $Issues_On = date('d-M-Y');
 
    $cart_total = 0;
    $cart_products[] = '';
