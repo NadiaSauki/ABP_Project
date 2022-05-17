@@ -69,11 +69,11 @@ if(isset($message)){
       <input type="password" name="password" placeholder="Enter Password" required class="box">
       <input type="password" name="cpassword" placeholder="Confirm Your Password" required class="box">
       <select name="user_type" class="box">
-         <option value="user">user</option>
-         <option value="admin">admin</option>
+         <option value="User">user</option>
+         <option value="Admin">admin</option>
       </select>
       <input type="submit" name="submit" value="register now" class="btn">
-      <p>already have an account? <a href="login.php">login now</a></p>
+      <p>already have an account? <a href="login.php">Login</a></p>
    </form>
 
 </div>
