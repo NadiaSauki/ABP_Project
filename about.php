@@ -150,7 +150,7 @@ if(!isset($user_id)){
    <div class="box-container">
 
       <div class="box">
-         <img src="images/author-1.jpg" alt="">
+         <img src="images/fahmi.jpeg" alt="">
          <div class="share">
             <a href="https://www.facebook.com/" class="fab fa-facebook-f"></a>
             <a href="https://twitter.com/i/flow/login" class="fab fa-twitter"></a>
@@ -161,7 +161,7 @@ if(!isset($user_id)){
       </div>
 
       <div class="box">
-         <img src="images/author-2.jpg" alt="">
+         <img src="images/akif.jpeg" alt="">
          <div class="share">
             <a href="https://www.facebook.com/" class="fab fa-facebook-f"></a>
             <a href="https://twitter.com/i/flow/login" class="fab fa-twitter"></a>
@@ -172,7 +172,7 @@ if(!isset($user_id)){
       </div>
 
       <div class="box">
-         <img src="images/author-3.jpg" alt="">
+         <img src="images/syaza.jpeg" alt="">
          <div class="share">
             <a href="https://www.facebook.com/" class="fab fa-facebook-f"></a>
             <a href="https://twitter.com/i/flow/login" class="fab fa-twitter"></a>
@@ -183,7 +183,7 @@ if(!isset($user_id)){
       </div>
 
       <div class="box">
-         <img src="images/author-4.jpg" alt="">
+         <img src="images/fas.jpeg" alt="">
          <div class="share">
             <a href="https://www.facebook.com/" class="fab fa-facebook-f"></a>
             <a href="https://twitter.com/i/flow/login" class="fab fa-twitter"></a>
@@ -194,7 +194,7 @@ if(!isset($user_id)){
       </div>
 
       <div class="box">
-         <img src="images/author-5.jpg" alt="">
+         <img src="images/iman.jpeg" alt="">
          <div class="share">
             <a href="https://www.facebook.com/" class="fab fa-facebook-f"></a>
             <a href="https://twitter.com/i/flow/login" class="fab fa-twitter"></a>
@@ -205,7 +205,7 @@ if(!isset($user_id)){
       </div>
 
       <div class="box">
-         <img src="images/author-6.jpg" alt="">
+         <img src="images/nad.jpeg" alt="">
          <div class="share">
             <a href="https://www.facebook.com/" class="fab fa-facebook-f"></a>
             <a href="https://twitter.com/i/flow/login" class="fab fa-twitter"></a>
