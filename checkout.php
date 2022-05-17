@@ -12,12 +12,12 @@ if(!isset($user_id)){
 
 if(isset($_POST['order_btn'])){
 
-   $name = mysqli_real_escape_string($conn, $_POST['name']);
-   $number = $_POST['number'];
-   $email = mysqli_real_escape_string($conn, $_POST['email']);
-   $method = mysqli_real_escape_string($conn, $_POST['method']);
-   $address = mysqli_real_escape_string($conn, 'flat no. '. $_POST['flat'].', '. $_POST['street'].', '. $_POST['city'].', '. $_POST['country'].' - '. $_POST['pin_code']);
-   $placed_on = date('d-M-Y');
+   $Receiver_Name = mysqli_real_escape_string($conn, $_POST['receiver name']);
+   $Phone_Number = $_POST['phone number'];
+   $Email = mysqli_real_escape_string($conn, $_POST['email']);
+   $Payment_Method = mysqli_real_escape_string($conn, $_POST['method']);
+   $Shipping_Address = mysqli_real_escape_string($conn, 'House No. '. $_POST['flat'].', '. $_POST['street'].', '. $_POST['city'].', '. $_POST['country'].' - '. $_POST['post_code']);
+   $Issues_On = date('d-M-Y');
 
    $cart_total = 0;
    $cart_products[] = '';
@@ -57,7 +57,7 @@ if(isset($_POST['order_btn'])){
    <meta charset="UTF-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>checkout</title>
+   <title>Checkout</title>
 
    <!-- font awesome cdn link  -->
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -71,19 +71,19 @@ if(isset($_POST['order_btn'])){
 <?php include 'header.php'; ?>
 
 <div class="heading">
-   <h3>checkout</h3>
-   <p> <a href="home.php">home</a> / checkout </p>
+   <h3>Checkout</h3>
+   <p> <a href="home.php">Home</a> / Checkout </p>
 </div>
 
 <section class="display-order">
 
    <?php  
-      $grand_total = 0;
+      $Total = 0;
       $select_cart = mysqli_query($conn, "SELECT * FROM `cart` WHERE user_id = '$user_id'") or die('query failed');
       if(mysqli_num_rows($select_cart) > 0){
          while($fetch_cart = mysqli_fetch_assoc($select_cart)){
             $total_price = ($fetch_cart['price'] * $fetch_cart['quantity']);
-            $grand_total += $total_price;
+            $Total += $total_price;
    ?>
    <p> <?php echo $fetch_cart['name']; ?> <span>(<?php echo '$'.$fetch_cart['price'].'/-'.' x '. $fetch_cart['quantity']; ?>)</span> </p>
    <?php
@@ -92,59 +92,59 @@ if(isset($_POST['order_btn'])){
       echo '<p class="empty">your cart is empty</p>';
    }
    ?>
-   <div class="grand-total"> grand total : <span>$<?php echo $grand_total; ?>/-</span> </div>
+   <div class="Total"> Total : <span>RM<?php echo $Total; ?>/-</span> </div>
 
 </section>
 
 <section class="checkout">
 
    <form action="" method="post">
-      <h3>place your order</h3>
+      <h3>place order</h3>
       <div class="flex">
          <div class="inputBox">
-            <span>your name :</span>
-            <input type="text" name="name" required placeholder="enter your name">
+            <span>Receiver Name :</span>
+            <input type="text" name="name" required placeholder="Enter Name">
          </div>
          <div class="inputBox">
-            <span>your number :</span>
-            <input type="number" name="number" required placeholder="enter your number">
+            <span>Phone Number :</span>
+            <input type="text" name="number" required placeholder="Enter Phone Number">
          </div>
          <div class="inputBox">
-            <span>your email :</span>
-            <input type="email" name="email" required placeholder="enter your email">
+            <span>Email :</span>
+            <input type="email" name="email" required placeholder="Enter Email">
          </div>
          <div class="inputBox">
-            <span>payment method :</span>
+            <span>Payment Methods :</span>
             <select name="method">
-               <option value="cash on delivery">cash on delivery</option>
-               <option value="credit card">credit card</option>
-               <option value="paypal">paypal</option>
-               <option value="paytm">paytm</option>
+               <option value="cash on delivery">Cash On Delivery</option>
+               <option value="credit card">Credit Card</option>
+               <option value="paypal">Paypal</option>
+               <option value="applepay">Apple Pay</option>
             </select>
          </div>
          <div class="inputBox">
-            <span>address line 01 :</span>
-            <input type="number" min="0" name="flat" required placeholder="e.g. flat no.">
+            <span>Shipping Address :</span>
+            <input type="number" min="0" name="flat" required placeholder="e.g. House No.">
          </div>
          <div class="inputBox">
-            <span>address line 01 :</span>
-            <input type="text" name="street" required placeholder="e.g. street name">
+            <span>Shipping Address :</span>
+            <input type="text" name="street" required placeholder="e.g. Street Name">
          </div>
          <div class="inputBox">
-            <span>city :</span>
-            <input type="text" name="city" required placeholder="e.g. mumbai">
+            <span>City :</span>
+            <input type="text" name="city" required placeholder="e.g. Kuantan">
          </div>
          <div class="inputBox">
-            <span>state :</span>
-            <input type="text" name="state" required placeholder="e.g. maharashtra">
+            <span>State :</span>
+            <input type="text" name="state" required placeholder="e.g. Pahang">
          </div>
          <div class="inputBox">
-            <span>country :</span>
-            <input type="text" name="country" required placeholder="e.g. india">
+            <span>Country :</span>
+            <input type="text" name="country" required placeholder="e.g. Malaysia">
          </div>
          <div class="inputBox">
-            <span>pin code :</span>
-            <input type="number" min="0" name="pin_code" required placeholder="e.g. 123456">
+            <span>Post Code :</span>
+            <input type="number" min="0" name="post_code" required placeholder="e.g. 123456">
          </div>
       </div>
       <input type="submit" value="order now" class="btn" name="order_btn">
