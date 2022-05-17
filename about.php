@@ -62,7 +62,7 @@ if(!isset($user_id)){
    <div class="box-container">
 
       <div class="box">
-         <img src="images/pic-1.png" alt="">
+         <img src="images/refal.jpg" alt="">
          <p>Very cool and unique shop. The book is really great price on both new and used items. Highly recommended! Terima Kasih ! &#128151; </p>
          <div class="stars">
             <i class="fas fa-star"></i>
@@ -75,7 +75,7 @@ if(!isset($user_id)){
       </div>
 
       <div class="box">
-         <img src="images/pic-2.png" alt="">
+         <img src="images/aldi.jpg" alt="">
          <p>Great local bookstore with very friendly, helpfull and knowledgable staff. The book with reasonable price. Awesome!   </p>
          <div class="stars">
             <i class="fas fa-star"></i>
@@ -88,7 +88,7 @@ if(!isset($user_id)){
       </div>
 
       <div class="box">
-         <img src="images/pic-3.png" alt="">
+         <img src="images/kinan.jpg" alt="">
          <p>Had a beautiful experience shopping at Ju's Book Store. Heather is so sweet and very helpfull. Very excited to read the book </p>
          <div class="stars">
             <i class="fas fa-star"></i>
@@ -97,11 +97,11 @@ if(!isset($user_id)){
             <i class="fas fa-star"></i>
             <i class="fas fa-star"></i>
          </div>
-         <h3>Syaza</h3>
+         <h3>Sabrina</h3>
       </div>
 
       <div class="box">
-         <img src="images/pic-4.png" alt="">
+         <img src="images/sarah.jpg" alt="">
          <p>Wonderfull bookstore! Carries local authors. Reasonable price and will surely order again. Always ready to help. Cant go wrong :) </p>
          <div class="stars">
             <i class="fas fa-star"></i>
@@ -114,7 +114,7 @@ if(!isset($user_id)){
       </div>
 
       <div class="box">
-         <img src="images/pic-5.png" alt="">
+         <img src="images/indah.webp" alt="">
          <p>Hi ! Sorry for the late feeback. I opened the package and here it is! very excited to read these books.Thank you very much!!</p>
          <div class="stars">
             <i class="fas fa-star"></i>
@@ -127,7 +127,7 @@ if(!isset($user_id)){
       </div>
 
       <div class="box">
-         <img src="images/pic-6.png" alt="">
+         <img src="images/ib.jpg" alt="">
          <p>Very accomodating seller and trustworthy. The books are in good condition and love the packaging. So happy to find this page &#128516; .</p>
          <div class="stars">
             <i class="fas fa-star"></i>
@@ -136,7 +136,7 @@ if(!isset($user_id)){
             <i class="fas fa-star"></i>
             <i class="fas fa-star-half-alt"></i>
          </div>
-         <h3>Nurul</h3>
+         <h3>Rul</h3>
       </div>
 
    </div>
