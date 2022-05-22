@@ -1,17 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600&display=swap');
 
 :root{
-   --purple:#b147df;
-   --red:#bb200e;
-   --orange:#d88c12;
+   --purple:#ca06db;
+   --red:#c71f0d;
+   --orange:#ecc513;
    --black:rgb(0, 0, 0);
    --white:rgb(255, 255, 255);
-   --blue: #0c0cc5;
-   --light-color:#666;
-   --light-white:#ccc;
+   --light-color:rgb(134, 134, 134);
+   --light-white:rgb(228, 228, 228);
    --light-bg:#f5f5f5;
    --border:.1rem solid var(--black);
-   --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+   --box-shadow:0 .5rem 1rem rgba(0, 0, 0, 0.1);
 }
 
 *{
@@ -405,7 +404,7 @@ section{
 .products .box-container .box .detail{
    padding:1rem 0;
    font-size: 1.5rem;
-   color:var(--blue);
+   color:var(--black);
 }
 
 .products .box-container .box .qty{
